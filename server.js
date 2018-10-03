@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 	    log = (`${req.ip} | ${now}: ${req.method} ${req.path}`);
 
   console.log(log);
-  fs.appendFile('server log', log + '\n', (err) => {
+  fs.appendFile('server.log', log + '\n', (err) => {
   	if (err)
   		console.log('Unable to append to server.log');
   });
@@ -58,6 +58,13 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
 	res.render('about.hbs', {
 		pageTitle:   'About Page',
+		currentYear: new Date().getFullYear(),
+	});
+});
+
+app.get('/projects', (req, res) => {
+	res.render('projects.hbs', {
+		pageTitle:   'Projects Page',
 		currentYear: new Date().getFullYear(),
 	});
 });
